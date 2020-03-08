@@ -20,7 +20,8 @@ public class AccountListController {
 
     public AccountListController(AccountListFragment view) {
         this.view = view;
-        this.service = new AccountService();
+        this.service = new AccountService(this.view.getContext());
+        this.service.insertDummyData();
     }
 
     public void start() {

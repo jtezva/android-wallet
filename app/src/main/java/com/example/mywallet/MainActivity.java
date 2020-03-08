@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.mywallet.core.dao.WalletDbHelper;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
