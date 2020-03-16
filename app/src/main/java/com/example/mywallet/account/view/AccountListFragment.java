@@ -1,9 +1,13 @@
 package com.example.mywallet.account.view;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,5 +30,25 @@ public class AccountListFragment extends ListFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.controller.start();
+
+        Button addButton = view.findViewById(R.id.account_list_add_button);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controller.onAddClick(v);
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("AccountListFragment.onActivityResult", requestCode + ": " + resultCode);
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            Log.d("AccountListFragment.onActivityResult", "correct insert result");
+            this.controller.load();
+        } else if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
+            Log.d("AccountListFragment.onActivityResult", "correct update result");
+            this.controller.load();
+        }
     }
 }

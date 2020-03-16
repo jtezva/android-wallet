@@ -38,21 +38,21 @@ public class AccountListAdapter extends ArrayAdapter<Account> {
         // view
         View view = LayoutInflater.from(this.getContext())
                 .inflate(R.layout.fragment_account_list_row, parent,false);
-        TextView label = view.findViewById(R.id.fragment_account_list_row_label);
+        TextView label = view.findViewById(R.id.account_list_row_label);
         label.setText(account.getName());
-        TextView amount = view.findViewById(R.id.fragment_account_list_row_amount);
+        TextView amount = view.findViewById(R.id.account_list_row_amount);
         amount.setText("$" + account.getAmount());
 
         // controller
         final AccountListRowController rowController = new AccountListRowController(this.controller, account);
-        Button edit = view.findViewById(R.id.fragment_account_list_row_edit);
+        Button edit = view.findViewById(R.id.account_list_row_edit);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 rowController.onEditClick(v);
             }
         });
-        Button delete = view.findViewById(R.id.fragment_account_list_row_delete);
+        Button delete = view.findViewById(R.id.account_list_row_delete);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -5,11 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".account.view.AccountFormActivity">
 
     <fragment
-        android:id="@+id/main_fragment"
-        android:name="com.example.mywallet.account.view.AccountListFragment"
+        android:id="@+id/account_form_fragment"
+        android:name="com.example.mywallet.account.view.AccountFormFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
