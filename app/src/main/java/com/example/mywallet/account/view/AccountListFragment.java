@@ -15,13 +15,15 @@ import androidx.fragment.app.ListFragment;
 
 import com.example.mywallet.R;
 import com.example.mywallet.account.controller.AccountListController;
+import com.example.mywallet.core.constant.Constant;
 
 public class AccountListFragment extends ListFragment {
 
     private AccountListController controller;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         this.controller = new AccountListController(this);
         return inflater.inflate(R.layout.fragment_account_list, container, false);
     }
@@ -43,10 +45,12 @@ public class AccountListFragment extends ListFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d("AccountListFragment.onActivityResult", requestCode + ": " + resultCode);
-        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+        if (requestCode == Constant.ACTIVITY_CODE_ACCOUNT_FORM_INSERT
+                && resultCode == Activity.RESULT_OK) {
             Log.d("AccountListFragment.onActivityResult", "correct insert result");
             this.controller.load();
-        } else if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
+        } else if (requestCode == Constant.ACTIVITY_CODE_ACCOUNT_FORM_UPDATE
+                && resultCode == Activity.RESULT_OK) {
             Log.d("AccountListFragment.onActivityResult", "correct update result");
             this.controller.load();
         }

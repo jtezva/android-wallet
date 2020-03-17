@@ -74,6 +74,7 @@ public class AccountFormFragment extends Fragment {
             });
         } catch (Exception e) {
             Utils.handle(this.getContext(), "Account form view start", e);
+            this.getActivity().finish();
         }
     }
 

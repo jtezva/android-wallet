@@ -86,6 +86,7 @@ public class TransactionFormFragment extends Fragment {
             });
         } catch (Exception e) {
             Utils.handle(this.getContext(), "Transaction form view start", e);
+            this.getActivity().finish();
         }
     }
 

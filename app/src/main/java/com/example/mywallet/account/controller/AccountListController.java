@@ -50,7 +50,7 @@ public class AccountListController {
         Intent intent = new Intent(this.fragment.getContext(), AccountFormActivity.class);
         intent.putExtra(Constant.INTENT_TOKEN_FORM_MODE, Constant.FORM_MODE_UPDATE);
         intent.putExtra(Constant.INTENT_TOKEN_ACCOUNT, account.toPipes());
-        this.fragment.startActivityForResult(intent, 2);
+        this.fragment.startActivityForResult(intent, Constant.ACTIVITY_CODE_ACCOUNT_FORM_UPDATE);
     }
 
     public void onDeleteClick(final Account account) {
@@ -75,7 +75,7 @@ public class AccountListController {
     public void onAddClick() {
         Intent intent = new Intent(this.fragment.getContext(), AccountFormActivity.class);
         intent.putExtra(Constant.INTENT_TOKEN_FORM_MODE, Constant.FORM_MODE_INSERT);
-        this.fragment.startActivityForResult(intent, 1);
+        this.fragment.startActivityForResult(intent, Constant.ACTIVITY_CODE_ACCOUNT_FORM_INSERT);
     }
 
     public void onTransactionClick(Account account) {
@@ -83,6 +83,6 @@ public class AccountListController {
         Intent intent = new Intent(this.fragment.getContext(), TransactionFormActivity.class);
         intent.putExtra(Constant.INTENT_TOKEN_FORM_MODE, Constant.FORM_MODE_INSERT);
         intent.putExtra(Constant.INTENT_TOKEN_ACCOUNT, account.toPipes());
-        this.fragment.startActivityForResult(intent, 2);
+        this.fragment.startActivityForResult(intent, Constant.ACTIVITY_CODE_TRANSACTION_FORM_INSERT);
     }
 }
