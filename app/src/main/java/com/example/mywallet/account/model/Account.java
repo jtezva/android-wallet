@@ -1,5 +1,7 @@
 package com.example.mywallet.account.model;
 
+import android.text.TextUtils;
+
 import androidx.annotation.Nullable;
 
 import com.example.mywallet.util.Utils;
@@ -23,6 +25,41 @@ public class Account {
         this.amount = amount;
     }
 
+    @Override
+    public String toString() {
+        return this.name + " (" + this.id + ")";
+    }
+
+    public String toPipes() {
+        return Utils.nvl(this.id) + "|" + Utils.nvl(this.name) + "|" + Utils.nvl(this.amount);
+    }
+
+    public static Account fromPipes(String str) {
+        Account a = new Account();
+        if (str != null) {
+            String[] tokens = str.split("\\|");
+            if (!TextUtils.isEmpty(tokens[0])) {
+                a.setId(Integer.valueOf(tokens[0]));
+            }
+            if (!TextUtils.isEmpty(tokens[1])) {
+                a.setName(tokens[1]);
+            }
+            if (!TextUtils.isEmpty(tokens[2])) {
+                a.setAmount(Double.valueOf(tokens[2]));
+            }
+        }
+        return a;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if (!(obj instanceof Account)) return false;
+        return ((Account) obj).getId() == this.id;
+    }
+
+    // getters & setters
     public int getId() {
         return id;
     }
@@ -45,35 +82,5 @@ public class Account {
 
     public void setAmount(Double amount) {
         this.amount = amount;
-    }
-
-    @Override
-    public boolean equals(@Nullable Object obj) {
-        if (obj == null) return false;
-        if (obj == this) return true;
-        if (!(obj instanceof Account)) return false;
-        return ((Account) obj).getId() == this.id;
-    }
-
-    @Override
-    public String toString() {
-        return Utils.nvl(this.id) + "," + Utils.nvl(this.name) + "," + Utils.nvl(this.amount);
-    }
-
-    public static Account fromString(String str) {
-        Account a = new Account();
-        if (str != null) {
-            String[] tokens = str.split(",");
-            if (tokens[0].length() > 0) {
-                a.setId(Integer.valueOf(tokens[0]));
-            }
-            if (tokens[1].length() > 0) {
-                a.setName(tokens[1]);
-            }
-            if (tokens[2].length() > 0) {
-                a.setAmount(Double.valueOf(tokens[2]));
-            }
-        }
-        return a;
     }
 }

@@ -35,7 +35,7 @@ public class AccountListFragment extends ListFragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                controller.onAddClick(v);
+                controller.onAddClick();
             }
         });
     }

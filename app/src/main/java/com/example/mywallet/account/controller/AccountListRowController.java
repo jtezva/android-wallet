@@ -1,7 +1,5 @@
 package com.example.mywallet.account.controller;
 
-import android.view.View;
-
 import com.example.mywallet.account.model.Account;
 
 public class AccountListRowController {
@@ -13,11 +11,15 @@ public class AccountListRowController {
         this.account = account;
     }
 
-    public void onEditClick(View view) {
-        this.parentController.onEditClick(view, this.account);
+    public void onEditClick() {
+        this.parentController.onEditClick(this.account);
     }
 
-    public void onDeleteClick(View view) {
-        this.parentController.onDeleteClick(view, this.account);
+    public void onDeleteClick() {
+        this.parentController.onDeleteClick(this.account);
+    }
+
+    public void onTransactionClick() {
+        this.parentController.onTransactionClick(this.account);
     }
 }

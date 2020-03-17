@@ -49,14 +49,21 @@ public class AccountListAdapter extends ArrayAdapter<Account> {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rowController.onEditClick(v);
+                rowController.onEditClick();
             }
         });
         Button delete = view.findViewById(R.id.account_list_row_delete);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rowController.onDeleteClick(v);
+                rowController.onDeleteClick();
+            }
+        });
+        Button transaction = view.findViewById(R.id.account_list_row_transaction);
+        transaction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rowController.onTransactionClick();
             }
         });
         return view;

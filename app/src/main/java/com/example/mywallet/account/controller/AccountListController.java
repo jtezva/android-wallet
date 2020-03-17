@@ -4,13 +4,14 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
-import android.view.View;
 
 import com.example.mywallet.account.view.AccountFormActivity;
 import com.example.mywallet.account.view.AccountListFragment;
 import com.example.mywallet.account.model.Account;
 import com.example.mywallet.account.service.AccountService;
 import com.example.mywallet.account.view.AccountListAdapter;
+import com.example.mywallet.core.constant.Constant;
+import com.example.mywallet.transaction.view.TransactionFormActivity;
 import com.example.mywallet.util.Utils;
 
 import java.util.ArrayList;
@@ -44,14 +45,15 @@ public class AccountListController {
         this.adapter.notifyDataSetChanged();
     }
 
-    public void onEditClick(View view, Account account) {
+    public void onEditClick(Account account) {
         Log.d("AccountListController.onEditClick", account.toString());
         Intent intent = new Intent(this.fragment.getContext(), AccountFormActivity.class);
-        intent.putExtra("account", account.toString());
+        intent.putExtra(Constant.INTENT_TOKEN_FORM_MODE, Constant.FORM_MODE_UPDATE);
+        intent.putExtra(Constant.INTENT_TOKEN_ACCOUNT, account.toPipes());
         this.fragment.startActivityForResult(intent, 2);
     }
 
-    public void onDeleteClick(View v, final Account account) {
+    public void onDeleteClick(final Account account) {
         Log.d("AccountListController.onDeleteClick", account.toString());
         new AlertDialog.Builder(this.fragment.getContext())
                 .setTitle("Delete")
@@ -70,8 +72,17 @@ public class AccountListController {
                 .setNegativeButton(android.R.string.no, null).show();
     }
 
-    public void onAddClick(View view) {
+    public void onAddClick() {
         Intent intent = new Intent(this.fragment.getContext(), AccountFormActivity.class);
+        intent.putExtra(Constant.INTENT_TOKEN_FORM_MODE, Constant.FORM_MODE_INSERT);
         this.fragment.startActivityForResult(intent, 1);
+    }
+
+    public void onTransactionClick(Account account) {
+        Log.d("AccountListController.onTransactionClick", account.toString());
+        Intent intent = new Intent(this.fragment.getContext(), TransactionFormActivity.class);
+        intent.putExtra(Constant.INTENT_TOKEN_FORM_MODE, Constant.FORM_MODE_INSERT);
+        intent.putExtra(Constant.INTENT_TOKEN_ACCOUNT, account.toPipes());
+        this.fragment.startActivityForResult(intent, 2);
     }
 }

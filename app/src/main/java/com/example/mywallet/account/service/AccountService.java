@@ -20,7 +20,7 @@ public class AccountService {
     }
 
     public List<Account> loadAccountList() {
-        Log.d("AccountService","loadAccountList");
+        Log.d("AccountService","loadAccountList >");
         List<Account> list = null;
         WalletDbHelper dbh = new WalletDbHelper(this.context);
         try {
@@ -32,6 +32,7 @@ public class AccountService {
                 dbh.close();
             }
         }
+        Log.d("AccountService","loadAccountList < items: " + list.size());
         return list;
     }
 
