@@ -66,6 +66,13 @@ public class AccountListAdapter extends ArrayAdapter<Account> {
                 rowController.onTransactionClick();
             }
         });
+        Button list = view.findViewById(R.id.account_list_row_list);
+        list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rowController.onListClick();
+            }
+        });
         return view;
     }
 }

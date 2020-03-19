@@ -47,11 +47,18 @@ public class AccountListFragment extends ListFragment {
         Log.d("AccountListFragment.onActivityResult", requestCode + ": " + resultCode);
         if (requestCode == Constant.ACTIVITY_CODE_ACCOUNT_FORM_INSERT
                 && resultCode == Activity.RESULT_OK) {
-            Log.d("AccountListFragment.onActivityResult", "correct insert result");
+            Log.d("AccountListFragment.onActivityResult", "correct account insert");
             this.controller.load();
         } else if (requestCode == Constant.ACTIVITY_CODE_ACCOUNT_FORM_UPDATE
                 && resultCode == Activity.RESULT_OK) {
-            Log.d("AccountListFragment.onActivityResult", "correct update result");
+            Log.d("AccountListFragment.onActivityResult", "correct account update");
+            this.controller.load();
+        } else if (requestCode == Constant.ACTIVITY_CODE_TRANSACTION_FORM_INSERT
+                && resultCode == Activity.RESULT_OK) {
+            Log.d("AccountListFragment.onActivityResult", "correct transaction insert");
+            this.controller.load();
+        } else if (requestCode == Constant.ACTIVITY_CODE_TRANSACTION_LIST) {
+            Log.d("AccountListFragment.onActivityResult", "return from transaction list");
             this.controller.load();
         }
     }

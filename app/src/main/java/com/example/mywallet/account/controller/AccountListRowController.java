@@ -22,4 +22,8 @@ public class AccountListRowController {
     public void onTransactionClick() {
         this.parentController.onTransactionClick(this.account);
     }
+
+    public void onListClick() {
+        this.parentController.onListClick(this.account);
+    }
 }

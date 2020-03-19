@@ -9,9 +9,23 @@ public class Transaction {
     private int id;
     private double amount;
     private String concept;
-    private String account;
-    private String transferto;
+    private int account;
+    private int transferto;
     private String stamp;
+    private double amountBefore;
+    private double amountAfter;
+
+    public Transaction() {}
+
+    public Transaction(int id, double amount, String concept, int account, int transferto,
+                       String stamp) {
+        this.id = id;
+        this.amount = amount;
+        this.concept = concept;
+        this.account = account;
+        this.transferto = transferto;
+        this.stamp = stamp;
+    }
 
     @Override
     public String toString() {
@@ -38,10 +52,10 @@ public class Transaction {
                 t.setConcept(tokens[2]);
             }
             if (!TextUtils.isEmpty(tokens[3])) {
-                t.setAccount(tokens[3]);
+                t.setAccount(Integer.valueOf(tokens[3]));
             }
             if (!TextUtils.isEmpty(tokens[4])) {
-                t.setTransferto(tokens[4]);
+                t.setTransferto(Integer.valueOf(tokens[4]));
             }
             if (!TextUtils.isEmpty(tokens[5])) {
                 t.setStamp(tokens[5]);
@@ -75,19 +89,19 @@ public class Transaction {
         this.concept = concept;
     }
 
-    public String getAccount() {
+    public int getAccount() {
         return account;
     }
 
-    public void setAccount(String account) {
+    public void setAccount(int account) {
         this.account = account;
     }
 
-    public String getTransferto() {
+    public int getTransferto() {
         return transferto;
     }
 
-    public void setTransferto(String transferto) {
+    public void setTransferto(int transferto) {
         this.transferto = transferto;
     }
 
@@ -97,5 +111,21 @@ public class Transaction {
 
     public void setStamp(String stamp) {
         this.stamp = stamp;
+    }
+
+    public double getAmountBefore() {
+        return amountBefore;
+    }
+
+    public void setAmountBefore(double amountBefore) {
+        this.amountBefore = amountBefore;
+    }
+
+    public double getAmountAfter() {
+        return amountAfter;
+    }
+
+    public void setAmountAfter(double amountAfter) {
+        this.amountAfter = amountAfter;
     }
 }

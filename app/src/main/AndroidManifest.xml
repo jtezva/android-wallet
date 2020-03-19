@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".transaction.view.TransactionFormActivity"></activity>
+        <activity android:name=".transaction.view.TransactionListActivity"></activity>
+        <activity android:name=".transaction.view.TransactionFormActivity" />
         <activity android:name=".account.view.AccountFormActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

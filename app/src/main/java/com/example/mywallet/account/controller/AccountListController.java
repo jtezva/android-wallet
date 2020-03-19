@@ -12,6 +12,7 @@ import com.example.mywallet.account.service.AccountService;
 import com.example.mywallet.account.view.AccountListAdapter;
 import com.example.mywallet.core.constant.Constant;
 import com.example.mywallet.transaction.view.TransactionFormActivity;
+import com.example.mywallet.transaction.view.TransactionListActivity;
 import com.example.mywallet.util.Utils;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class AccountListController {
     }
 
     public void onEditClick(Account account) {
-        Log.d("AccountListController.onEditClick", account.toString());
+        Log.d("AccountListController.onEditClick", account.toPipes());
         Intent intent = new Intent(this.fragment.getContext(), AccountFormActivity.class);
         intent.putExtra(Constant.INTENT_TOKEN_FORM_MODE, Constant.FORM_MODE_UPDATE);
         intent.putExtra(Constant.INTENT_TOKEN_ACCOUNT, account.toPipes());
@@ -54,7 +55,7 @@ public class AccountListController {
     }
 
     public void onDeleteClick(final Account account) {
-        Log.d("AccountListController.onDeleteClick", account.toString());
+        Log.d("AccountListController.onDeleteClick", account.toPipes());
         new AlertDialog.Builder(this.fragment.getContext())
                 .setTitle("Delete")
                 .setMessage("Do you really want to delete?")
@@ -79,10 +80,17 @@ public class AccountListController {
     }
 
     public void onTransactionClick(Account account) {
-        Log.d("AccountListController.onTransactionClick", account.toString());
+        Log.d("AccountListController.onTransactionClick", account.toPipes());
         Intent intent = new Intent(this.fragment.getContext(), TransactionFormActivity.class);
         intent.putExtra(Constant.INTENT_TOKEN_FORM_MODE, Constant.FORM_MODE_INSERT);
         intent.putExtra(Constant.INTENT_TOKEN_ACCOUNT, account.toPipes());
         this.fragment.startActivityForResult(intent, Constant.ACTIVITY_CODE_TRANSACTION_FORM_INSERT);
+    }
+
+    public void onListClick(Account account) {
+        Log.d("AccountListController.onListClick", account.toPipes());
+        Intent intent = new Intent(this.fragment.getContext(), TransactionListActivity.class);
+        intent.putExtra(Constant.INTENT_TOKEN_ACCOUNT, account.toPipes());
+        this.fragment.startActivityForResult(intent, Constant.ACTIVITY_CODE_TRANSACTION_LIST);
     }
 }
