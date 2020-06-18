@@ -41,7 +41,7 @@ public class AccountListAdapter extends ArrayAdapter<Account> {
         TextView label = view.findViewById(R.id.account_list_row_label);
         label.setText(account.getName());
         TextView amount = view.findViewById(R.id.account_list_row_amount);
-        amount.setText("$" + String.format("%.2f", account.getAmount()));
+        amount.setText("$" + String.format("%,.2f", account.getAmount()));
 
         // controller
         final AccountListRowController rowController = new AccountListRowController(this.controller, account);
