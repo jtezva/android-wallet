@@ -45,7 +45,7 @@ public class TransactionListFragment extends ListFragment {
 
             // input
             TextView title = view.findViewById(R.id.fragment_transaction_list_title);
-            title.setText(account.getName() + ": $" + account.getAmount());
+            title.setText(account.getName() + ": $" + String.format("%.2f", account.getAmount()));
 
             this.controller = new TransactionListController(this, account);
             this.controller.start();

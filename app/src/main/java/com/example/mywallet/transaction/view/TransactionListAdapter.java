@@ -44,7 +44,7 @@ public class TransactionListAdapter extends ArrayAdapter<Transaction> {
         View view = LayoutInflater.from(this.getContext())
                 .inflate(R.layout.fragment_transaction_list_row, parent,false);
         TextView label = view.findViewById(R.id.transaction_list_row_stamp);
-        label.setText("[" + transaction.getStamp() + "] $" + transaction.getAmount());
+        label.setText("[" + transaction.getStamp() + "] $" + String.format("%.2f", transaction.getAmount()));
 
         String concept = transaction.getConcept();
         if (transaction.getTransferto() > 0) { // transfer
@@ -73,7 +73,7 @@ public class TransactionListAdapter extends ArrayAdapter<Transaction> {
         amount.setText(concept);
 
         TextView balance = view.findViewById(R.id.transaction_list_row_balance);
-        balance.setText("($" + transaction.getAmountBefore() + " => $" + transaction.getAmountAfter() + ")");
+        balance.setText("($" + String.format("%.2f", transaction.getAmountBefore()) + " => $" + String.format("%.2f", transaction.getAmountAfter()) + ")");
 
         // controller
         final TransactionListRowController rowController = new TransactionListRowController(this.controller, transaction);
