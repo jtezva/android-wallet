@@ -40,6 +40,14 @@ public class AccountListFragment extends ListFragment {
                 controller.onAddClick();
             }
         });
+
+        Button exportButton = view.findViewById(R.id.account_list_export_button);
+        exportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controller.onExportClick();
+            }
+        });
     }
 
     @Override

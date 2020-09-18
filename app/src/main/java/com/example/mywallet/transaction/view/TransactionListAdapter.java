@@ -43,12 +43,14 @@ public class TransactionListAdapter extends ArrayAdapter<Transaction> {
         // view
         View view = LayoutInflater.from(this.getContext())
                 .inflate(R.layout.fragment_transaction_list_row, parent,false);
-        TextView label = view.findViewById(R.id.transaction_list_row_stamp);
-        label.setText("[" + transaction.getStamp() + "] $" + String.format("%,.2f", transaction.getAmount()));
 
         String concept = transaction.getConcept();
+        boolean isTransfer = false;
+        boolean weSent = false;
         if (transaction.getTransferto() > 0) { // transfer
+            isTransfer = true;
             if (transaction.getAccount() == this.controller.getAccount().getId()) { // we sent
+                weSent = true;
                 Account target = new Account();
                 target.setId(transaction.getTransferto());
                 int index = this.accounts.indexOf(target);
@@ -68,6 +70,16 @@ public class TransactionListAdapter extends ArrayAdapter<Transaction> {
                 }
             }
         }
+
+        TextView label = view.findViewById(R.id.transaction_list_row_stamp);
+        label.setText("[" + transaction.getStamp() + "] $" + String.format("%,.2f",
+                isTransfer
+                        ?
+                            weSent
+                                ? -1d * Math.abs(transaction.getAmount())
+                                : Math.abs(transaction.getAmount())
+                        : transaction.getAmount()
+                ));
 
         TextView amount = view.findViewById(R.id.transaction_list_row_amount);
         amount.setText(concept);

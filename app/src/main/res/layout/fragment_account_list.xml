@@ -6,16 +6,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/account_list_add_button"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Account" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/account_list_add_button"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight=".8"
+            android:text="New Account" />
+
+        <Button
+            android:id="@+id/account_list_export_button"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:text="E" />
+
+    </LinearLayout>
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
+
     </ListView>
 
 </LinearLayout>

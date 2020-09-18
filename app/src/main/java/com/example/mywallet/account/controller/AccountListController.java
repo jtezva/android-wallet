@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 
+import com.example.mywallet.account.service.ExportService;
 import com.example.mywallet.account.view.AccountFormActivity;
 import com.example.mywallet.account.view.AccountListFragment;
 import com.example.mywallet.account.model.Account;
@@ -24,10 +25,12 @@ public class AccountListController {
     private AccountListAdapter adapter;
     private AccountService service;
     private List<Account> accountList;
+    private ExportService exportService;
 
     public AccountListController(AccountListFragment view) {
         this.fragment = view;
         this.service = new AccountService(this.fragment.getContext());
+        this.exportService = new ExportService(this.fragment.getContext());
     }
 
     public void start() {
@@ -92,5 +95,13 @@ public class AccountListController {
         Intent intent = new Intent(this.fragment.getContext(), TransactionListActivity.class);
         intent.putExtra(Constant.INTENT_TOKEN_ACCOUNT, account.toPipes());
         this.fragment.startActivityForResult(intent, Constant.ACTIVITY_CODE_TRANSACTION_LIST);
+    }
+
+    public void onExportClick() {
+        try {
+            this.exportService.saveExcelFile();
+        } catch (Exception e) {
+            Utils.handle(fragment.getContext(), "Exporting data", e);
+        }
     }
 }
